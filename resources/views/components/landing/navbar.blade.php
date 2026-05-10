@@ -16,9 +16,8 @@
             <div class="hidden md:flex items-center gap-8">
                 <a href="/#hero" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors">Home</a>
                 <a href="/#features" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors">Features</a>
-                <a href="/#hackathons" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors">Hackathons</a>
                 <a href="/#leaderboard" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors">Leaderboard</a>
-                <a href="/contact" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors">Contact</a>
+                <a href="{{ route('dashboard') }}" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors">Dashboard</a>
             </div>
 
             {{-- Auth Section --}}
@@ -91,9 +90,8 @@
     <div id="mobile-menu" class="hidden md:hidden flex-col glass border-t border-white/5 px-4 pb-4">
         <a href="/#hero" class="py-3 text-sm font-medium text-slate-300 hover:text-white border-b border-white/5">Home</a>
         <a href="/#features" class="py-3 text-sm font-medium text-slate-300 hover:text-white border-b border-white/5">Features</a>
-        <a href="/#hackathons" class="py-3 text-sm font-medium text-slate-300 hover:text-white border-b border-white/5">Hackathons</a>
         <a href="/#leaderboard" class="py-3 text-sm font-medium text-slate-300 hover:text-white border-b border-white/5">Leaderboard</a>
-        <a href="/contact" class="py-3 text-sm font-medium text-slate-300 hover:text-white border-b border-white/5">Contact</a>
+        <a href="{{ route('dashboard') }}" class="py-3 text-sm font-medium text-slate-300 hover:text-white border-b border-white/5">Dashboard</a>
 
         @guest
             <div class="flex gap-3 pt-4">

@@ -35,11 +35,11 @@
 
         {{-- CTA Buttons --}}
         <div class="animate-slide-up opacity-0 delay-400 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a href="#hackathons" id="explore-hackathons-btn" class="btn-shimmer group relative inline-flex items-center gap-2 px-8 py-4 text-base font-semibold text-white bg-gradient-to-r from-neon-blue to-neon-purple rounded-2xl shadow-xl shadow-neon-purple/25 hover:shadow-neon-purple/50 transition-all duration-300 hover:scale-105">
+            <a href="{{ route('dashboard') }}" id="explore-hackathons-btn" class="btn-shimmer group relative inline-flex items-center gap-2 px-8 py-4 text-base font-semibold text-white bg-gradient-to-r from-neon-blue to-neon-purple rounded-2xl shadow-xl shadow-neon-purple/25 hover:shadow-neon-purple/50 transition-all duration-300 hover:scale-105">
                 <i data-lucide="rocket" class="w-5 h-5 transition-transform duration-300 group-hover:-translate-y-0.5"></i>
                 Explore Hackathons
             </a>
-            <a href="#" id="host-hackathon-btn" class="group inline-flex items-center gap-2 px-8 py-4 text-base font-semibold text-slate-300 hover:text-white border border-white/15 hover:border-white/30 rounded-2xl transition-all duration-300 hover:bg-white/5 hover:scale-105">
+            <a href="{{ route('hackathons.create') }}" id="host-hackathon-btn" class="group inline-flex items-center gap-2 px-8 py-4 text-base font-semibold text-slate-300 hover:text-white border border-white/15 hover:border-white/30 rounded-2xl transition-all duration-300 hover:bg-white/5 hover:scale-105">
                 <i data-lucide="plus-circle" class="w-5 h-5 transition-transform duration-300 group-hover:rotate-90"></i>
                 Host a Hackathon
             </a>
