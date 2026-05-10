@@ -18,13 +18,4 @@
     {{-- Statistics Section --}}
     <x-landing.statistics />
 
-    {{-- Testimonials Section --}}
-    <x-landing.testimonials />
-
-    {{-- CTA Section --}}
-    <x-landing.cta />
-
-    {{-- Footer --}}
-    <x-landing.footer />
-
 </x-layouts.app>
