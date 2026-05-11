@@ -129,40 +129,46 @@ class Hackathon extends Model
     }
 
     /**
-     * Get color scheme based on category.
+     * Get color scheme based on category — Solar Orange theme.
      */
     public function getColorSchemeAttribute(): array
     {
         return match (strtolower($this->category)) {
             'ai/ml', 'ai', 'machine learning' => [
-                'gradient'    => 'from-blue-500/20 to-cyan-500/20',
-                'border'      => 'hover:border-blue-400/30',
-                'badge_color' => 'text-blue-400 border-blue-400/20 bg-blue-400/5',
+                'gradient'    => 'from-blue-500 to-blue-600',
+                'border'      => 'hover:border-blue-200',
+                'badge_color' => 'text-blue-600 border-blue-200 bg-blue-50',
+                'accent'      => 'text-blue-600',
             ],
             'web3', 'blockchain', 'defi' => [
-                'gradient'    => 'from-purple-500/20 to-pink-500/20',
-                'border'      => 'hover:border-purple-400/30',
-                'badge_color' => 'text-purple-400 border-purple-400/20 bg-purple-400/5',
+                'gradient'    => 'from-violet-500 to-violet-600',
+                'border'      => 'hover:border-violet-200',
+                'badge_color' => 'text-violet-600 border-violet-200 bg-violet-50',
+                'accent'      => 'text-violet-600',
             ],
             'iot', 'cleantech', 'green tech' => [
-                'gradient'    => 'from-emerald-500/20 to-teal-500/20',
-                'border'      => 'hover:border-emerald-400/30',
-                'badge_color' => 'text-emerald-400 border-emerald-400/20 bg-emerald-400/5',
+                'gradient'    => 'from-emerald-500 to-emerald-600',
+                'border'      => 'hover:border-emerald-200',
+                'badge_color' => 'text-emerald-600 border-emerald-200 bg-emerald-50',
+                'accent'      => 'text-emerald-600',
             ],
             'mobile', 'app development' => [
-                'gradient'    => 'from-orange-500/20 to-amber-500/20',
-                'border'      => 'hover:border-orange-400/30',
-                'badge_color' => 'text-orange-400 border-orange-400/20 bg-orange-400/5',
+                'gradient'    => 'from-solar to-solar-hover',
+                'border'      => 'hover:border-solar-light',
+                'badge_color' => 'text-solar border-solar-light bg-solar-bg',
+                'accent'      => 'text-solar',
             ],
             'cybersecurity', 'security' => [
-                'gradient'    => 'from-red-500/20 to-rose-500/20',
-                'border'      => 'hover:border-red-400/30',
-                'badge_color' => 'text-red-400 border-red-400/20 bg-red-400/5',
+                'gradient'    => 'from-red-500 to-red-600',
+                'border'      => 'hover:border-red-200',
+                'badge_color' => 'text-red-600 border-red-200 bg-red-50',
+                'accent'      => 'text-red-600',
             ],
             default => [
-                'gradient'    => 'from-neon-blue/20 to-neon-purple/20',
-                'border'      => 'hover:border-neon-purple/30',
-                'badge_color' => 'text-neon-purple border-neon-purple/20 bg-neon-purple/5',
+                'gradient'    => 'from-solar to-solar-hover',
+                'border'      => 'hover:border-solar-light',
+                'badge_color' => 'text-solar border-solar-light bg-solar-bg',
+                'accent'      => 'text-solar',
             ],
         };
     }
