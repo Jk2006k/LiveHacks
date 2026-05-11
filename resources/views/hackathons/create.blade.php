@@ -156,6 +156,18 @@
                     </div>
                 </div>
 
+                {{-- Problem Statement --}}
+                <div class="glass-card rounded-2xl p-6 sm:p-8 space-y-5">
+                    <h2 class="text-lg font-bold text-white flex items-center gap-2"><i data-lucide="file-text" class="w-5 h-5 text-emerald-400"></i> Problem Statement</h2>
+                    <p class="text-sm text-slate-400">Upload a PDF that participants can download when the hackathon starts.</p>
+                    <div>
+                        <label for="problem_statement_pdf" class="block text-sm font-medium text-slate-300 mb-2">Problem Statement PDF</label>
+                        <input type="file" name="problem_statement_pdf" id="problem_statement_pdf" accept=".pdf"
+                            class="w-full px-4 py-3 rounded-xl bg-dark-800/50 border border-white/10 text-white text-sm file:mr-4 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-emerald-500/20 file:text-emerald-400 hover:file:bg-emerald-500/30 transition-all duration-300">
+                        <p class="text-xs text-slate-500 mt-1">Max 10MB · PDF format only</p>
+                    </div>
+                </div>
+
                 {{-- Submit --}}
                 <button type="submit"
                     class="btn-shimmer w-full py-4 text-base font-semibold text-white bg-gradient-to-r from-neon-blue to-neon-purple rounded-xl shadow-lg shadow-neon-purple/25 hover:shadow-neon-purple/40 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300">

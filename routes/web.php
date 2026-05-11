@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HackathonController;
+use App\Http\Controllers\SubmissionController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -39,6 +40,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/hackathons/create', [HackathonController::class, 'create'])->name('hackathons.create');
     Route::post('/hackathons', [HackathonController::class, 'store'])->name('hackathons.store');
     Route::post('/hackathons/{hackathon}/join', [HackathonController::class, 'join'])->name('hackathons.join');
+
+    // ── Submission Routes ────────────────────────────────
+    Route::get('/hackathons/{hackathon}/workspace', [SubmissionController::class, 'workspace'])->name('hackathons.workspace');
+    Route::post('/hackathons/{hackathon}/submit', [SubmissionController::class, 'submit'])->name('hackathons.submit');
+    Route::get('/hackathons/{hackathon}/problem-statement', [SubmissionController::class, 'downloadProblemStatement'])->name('hackathons.problem-statement');
+
+    // ── Admin Submission Management ──────────────────────
+    Route::get('/admin/submissions', [SubmissionController::class, 'adminIndex'])->name('admin.submissions');
+    Route::get('/admin/submissions/{submission}/download', [SubmissionController::class, 'downloadZip'])->name('admin.submissions.download');
 });
 
 // Show hackathon detail page (public, must be after /hackathons/create)
