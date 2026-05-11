@@ -135,47 +135,113 @@
                         <h2 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
                             <i data-lucide="calendar" class="w-5 h-5 text-neon-pink"></i> Schedule
                         </h2>
+
+                        @php
+                            $now = now();
+                            $regStarted = $hackathon->registration_start && $now->gte($hackathon->registration_start);
+                            $regEnded = $hackathon->registration_end && $now->gte($hackathon->registration_end);
+                            $hackStarted = $hackathon->hackathon_start && $now->gte($hackathon->hackathon_start);
+                            $hackEnded = $hackathon->hackathon_end && $now->gte($hackathon->hackathon_end);
+                        @endphp
+
+                        {{-- Live Status Banner --}}
+                        @if ($hackStarted && !$hackEnded)
+                        <div class="flex items-center gap-3 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 mb-4 animate-pulse-glow">
+                            <span class="relative flex h-4 w-4 shrink-0">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-4 w-4 bg-emerald-500"></span>
+                            </span>
+                            <div>
+                                <p class="text-emerald-400 font-bold text-sm">Hackathon is LIVE!</p>
+                                @if ($hackathon->hackathon_end)
+                                <p class="text-emerald-400/70 text-xs">Ends: {{ $hackathon->hackathon_end->format('M d, Y · h:i A') }}</p>
+                                @endif
+                            </div>
+                        </div>
+                        @elseif ($hackEnded)
+                        <div class="flex items-center gap-3 p-4 rounded-xl bg-slate-500/10 border border-slate-500/20 mb-4">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-slate-400 shrink-0"></i>
+                            <p class="text-slate-400 font-bold text-sm">Hackathon has ended</p>
+                        </div>
+                        @elseif ($hackathon->hackathon_start)
+                        <div class="flex items-center gap-3 p-4 rounded-xl bg-neon-blue/10 border border-neon-blue/20 mb-4">
+                            <i data-lucide="clock" class="w-5 h-5 text-neon-blue shrink-0"></i>
+                            <div>
+                                <p class="text-neon-blue font-bold text-sm">Hackathon starts soon</p>
+                                <p class="text-neon-blue/70 text-xs countdown-digit" data-countdown="{{ $hackathon->hackathon_start->toIso8601String() }}">Loading...</p>
+                            </div>
+                        </div>
+                        @endif
+
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             @if ($hackathon->registration_start)
-                            <div class="flex items-center gap-3 p-4 rounded-xl bg-dark-950/40 border border-white/5">
+                            <div class="flex items-center gap-3 p-4 rounded-xl bg-dark-950/40 border {{ $regStarted ? 'border-emerald-500/20' : 'border-white/5' }}">
                                 <div class="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center shrink-0">
                                     <i data-lucide="user-plus" class="w-5 h-5 text-emerald-400"></i>
                                 </div>
-                                <div>
-                                    <p class="text-xs text-slate-500 font-semibold uppercase tracking-wider">Reg. Opens</p>
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex items-center gap-2">
+                                        <p class="text-xs text-slate-500 font-semibold uppercase tracking-wider">Reg. Opens</p>
+                                        @if ($regStarted)
+                                        <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-emerald-500/15 text-emerald-400">✓ Started</span>
+                                        @endif
+                                    </div>
                                     <p class="text-sm font-bold text-white">{{ $hackathon->registration_start->format('M d, Y · h:i A') }}</p>
                                 </div>
                             </div>
                             @endif
                             @if ($hackathon->registration_end)
-                            <div class="flex items-center gap-3 p-4 rounded-xl bg-dark-950/40 border border-white/5">
+                            <div class="flex items-center gap-3 p-4 rounded-xl bg-dark-950/40 border {{ $regEnded ? 'border-red-500/20' : 'border-white/5' }}">
                                 <div class="w-10 h-10 rounded-lg bg-red-500/10 flex items-center justify-center shrink-0">
                                     <i data-lucide="user-minus" class="w-5 h-5 text-red-400"></i>
                                 </div>
-                                <div>
-                                    <p class="text-xs text-slate-500 font-semibold uppercase tracking-wider">Reg. Closes</p>
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex items-center gap-2">
+                                        <p class="text-xs text-slate-500 font-semibold uppercase tracking-wider">Reg. Closes</p>
+                                        @if ($regEnded)
+                                        <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-red-500/15 text-red-400">Closed</span>
+                                        @elseif ($regStarted)
+                                        <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-yellow-500/15 text-yellow-400">Open</span>
+                                        @endif
+                                    </div>
                                     <p class="text-sm font-bold text-white">{{ $hackathon->registration_end->format('M d, Y · h:i A') }}</p>
                                 </div>
                             </div>
                             @endif
                             @if ($hackathon->hackathon_start)
-                            <div class="flex items-center gap-3 p-4 rounded-xl bg-dark-950/40 border border-white/5">
-                                <div class="w-10 h-10 rounded-lg bg-neon-blue/10 flex items-center justify-center shrink-0">
-                                    <i data-lucide="play" class="w-5 h-5 text-neon-blue"></i>
+                            <div class="flex items-center gap-3 p-4 rounded-xl bg-dark-950/40 border {{ $hackStarted && !$hackEnded ? 'border-emerald-500/20 ring-1 ring-emerald-500/10' : ($hackStarted ? 'border-slate-500/20' : 'border-white/5') }}">
+                                <div class="w-10 h-10 rounded-lg {{ $hackStarted && !$hackEnded ? 'bg-emerald-500/10' : 'bg-neon-blue/10' }} flex items-center justify-center shrink-0">
+                                    <i data-lucide="play" class="w-5 h-5 {{ $hackStarted && !$hackEnded ? 'text-emerald-400' : 'text-neon-blue' }}"></i>
                                 </div>
-                                <div>
-                                    <p class="text-xs text-slate-500 font-semibold uppercase tracking-wider">Starts</p>
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex items-center gap-2">
+                                        <p class="text-xs text-slate-500 font-semibold uppercase tracking-wider">Starts</p>
+                                        @if ($hackStarted && !$hackEnded)
+                                        <span class="inline-flex items-center gap-1 text-[10px] font-bold px-1.5 py-0.5 rounded bg-emerald-500/15 text-emerald-400">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> LIVE
+                                        </span>
+                                        @elseif ($hackEnded)
+                                        <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-slate-500/15 text-slate-400">Done</span>
+                                        @else
+                                        <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-neon-blue/15 text-neon-blue">Upcoming</span>
+                                        @endif
+                                    </div>
                                     <p class="text-sm font-bold text-white">{{ $hackathon->hackathon_start->format('M d, Y · h:i A') }}</p>
                                 </div>
                             </div>
                             @endif
                             @if ($hackathon->hackathon_end)
-                            <div class="flex items-center gap-3 p-4 rounded-xl bg-dark-950/40 border border-white/5">
+                            <div class="flex items-center gap-3 p-4 rounded-xl bg-dark-950/40 border {{ $hackEnded ? 'border-slate-500/20' : 'border-white/5' }}">
                                 <div class="w-10 h-10 rounded-lg bg-neon-purple/10 flex items-center justify-center shrink-0">
                                     <i data-lucide="flag" class="w-5 h-5 text-neon-purple"></i>
                                 </div>
-                                <div>
-                                    <p class="text-xs text-slate-500 font-semibold uppercase tracking-wider">Ends</p>
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex items-center gap-2">
+                                        <p class="text-xs text-slate-500 font-semibold uppercase tracking-wider">Ends</p>
+                                        @if ($hackEnded)
+                                        <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-slate-500/15 text-slate-400">Ended</span>
+                                        @endif
+                                    </div>
                                     <p class="text-sm font-bold text-white">{{ $hackathon->hackathon_end->format('M d, Y · h:i A') }}</p>
                                 </div>
                             </div>
@@ -205,7 +271,11 @@
                                 <i data-lucide="check-circle" class="w-8 h-8 text-emerald-400"></i>
                             </div>
                             <h3 class="text-2xl font-bold text-emerald-400 mb-1">You're Registered!</h3>
-                            <p class="text-slate-400">You have already joined this hackathon. Good luck!</p>
+                            <p class="text-slate-400 mb-6">You have already joined this hackathon. Good luck!</p>
+                            <a href="{{ route('hackathons.workspace', $hackathon) }}"
+                               class="btn-shimmer inline-flex items-center gap-2 px-8 py-4 text-base font-bold text-white bg-gradient-to-r from-neon-blue to-neon-purple rounded-2xl shadow-xl shadow-neon-purple/20 hover:shadow-neon-purple/40 hover:scale-[1.02] transition-all duration-300">
+                                <i data-lucide="layout-dashboard" class="w-5 h-5"></i> Go to Workspace
+                            </a>
                         </div>
                         @elseif ($hackathon->is_registration_open)
                         <div>

@@ -54,9 +54,13 @@
 
                             {{-- Menu Items --}}
                             <div class="py-1">
-                                <a href="#" class="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-300 hover:text-white hover:bg-white/5 transition-all duration-200">
+                                <a href="{{ route('dashboard') }}" class="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-300 hover:text-white hover:bg-white/5 transition-all duration-200">
                                     <i data-lucide="layout-dashboard" class="w-4 h-4 text-neon-blue"></i>
                                     Dashboard
+                                </a>
+                                <a href="{{ route('admin.submissions') }}" class="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-300 hover:text-white hover:bg-white/5 transition-all duration-200">
+                                    <i data-lucide="folder-check" class="w-4 h-4 text-emerald-400"></i>
+                                    Manage Submissions
                                 </a>
                                 <a href="#" class="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-300 hover:text-white hover:bg-white/5 transition-all duration-200">
                                     <i data-lucide="user-circle" class="w-4 h-4 text-neon-purple"></i>
@@ -111,8 +115,11 @@
                         <p class="text-xs text-slate-400">{{ Auth::user()->email }}</p>
                     </div>
                 </div>
-                <a href="#" class="flex items-center gap-3 py-2.5 text-sm text-slate-300 hover:text-white transition-colors">
+                <a href="{{ route('dashboard') }}" class="flex items-center gap-3 py-2.5 text-sm text-slate-300 hover:text-white transition-colors">
                     <i data-lucide="layout-dashboard" class="w-4 h-4 text-neon-blue"></i> Dashboard
+                </a>
+                <a href="{{ route('admin.submissions') }}" class="flex items-center gap-3 py-2.5 text-sm text-slate-300 hover:text-white transition-colors">
+                    <i data-lucide="folder-check" class="w-4 h-4 text-emerald-400"></i> Manage Submissions
                 </a>
                 <a href="#" class="flex items-center gap-3 py-2.5 text-sm text-slate-300 hover:text-white transition-colors">
                     <i data-lucide="user-circle" class="w-4 h-4 text-neon-purple"></i> Profile

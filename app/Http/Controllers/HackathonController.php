@@ -88,8 +88,9 @@ class HackathonController extends Controller
             'registration_end'   => ['nullable', 'date', 'after_or_equal:registration_start'],
             'hackathon_start'    => ['nullable', 'date'],
             'hackathon_end'      => ['nullable', 'date', 'after_or_equal:hackathon_start'],
-            'banner_image'       => ['nullable', 'image', 'max:2048'],
-            'logo_image'         => ['nullable', 'image', 'max:1024'],
+            'banner_image'           => ['nullable', 'image', 'max:2048'],
+            'logo_image'             => ['nullable', 'image', 'max:1024'],
+            'problem_statement_pdf'  => ['nullable', 'file', 'mimes:pdf', 'max:10240'],
         ]);
 
         // Process tags
@@ -101,6 +102,7 @@ class HackathonController extends Controller
         // Handle file uploads
         $bannerPath = null;
         $logoPath = null;
+        $pdfPath = null;
 
         if ($request->hasFile('banner_image')) {
             $bannerPath = $request->file('banner_image')->store('hackathons/banners', 'public');
@@ -108,6 +110,10 @@ class HackathonController extends Controller
 
         if ($request->hasFile('logo_image')) {
             $logoPath = $request->file('logo_image')->store('hackathons/logos', 'public');
+        }
+
+        if ($request->hasFile('problem_statement_pdf')) {
+            $pdfPath = $request->file('problem_statement_pdf')->store('hackathons/problem-statements', 'public');
         }
 
         $hackathon = Hackathon::create([
@@ -121,9 +127,10 @@ class HackathonController extends Controller
             'entry_fee'          => $validated['entry_fee'],
             'team_limit'         => $validated['team_limit'],
             'max_participants'   => $validated['max_participants'],
-            'banner_image'       => $bannerPath,
-            'logo_image'         => $logoPath,
-            'tags'               => $tags,
+            'banner_image'           => $bannerPath,
+            'logo_image'             => $logoPath,
+            'problem_statement_pdf'  => $pdfPath,
+            'tags'                   => $tags,
             'registration_start' => $validated['registration_start'],
             'registration_end'   => $validated['registration_end'],
             'hackathon_start'    => $validated['hackathon_start'],
