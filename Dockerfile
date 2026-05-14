@@ -27,4 +27,4 @@ RUN sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/s|AllowOverride None|Allow
 
 EXPOSE 80
 
-CMD apache2-foreground
+CMD php artisan migrate --force && apache2-foreground
