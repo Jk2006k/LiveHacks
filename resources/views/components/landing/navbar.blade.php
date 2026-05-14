@@ -15,9 +15,10 @@
             {{-- Desktop Nav Links --}}
             <div class="hidden md:flex items-center gap-8">
                 <a href="/#hero" class="nav-link text-sm font-medium text-text-secondary hover:text-text-primary transition-colors">Home</a>
-                <a href="/#features" class="nav-link text-sm font-medium text-text-secondary hover:text-text-primary transition-colors">Features</a>
-                <a href="/#leaderboard" class="nav-link text-sm font-medium text-text-secondary hover:text-text-primary transition-colors">Leaderboard</a>
                 <a href="{{ route('dashboard') }}" class="nav-link text-sm font-medium text-text-secondary hover:text-text-primary transition-colors">Dashboard</a>
+                @auth
+                    <a href="{{ route('hackathons.create') }}" class="nav-link text-sm font-medium text-text-secondary hover:text-text-primary transition-colors">Host</a>
+                @endauth
             </div>
 
             {{-- Auth Section --}}
@@ -46,11 +47,11 @@
                                 <a href="{{ route('dashboard') }}" class="flex items-center gap-3 px-4 py-2.5 text-sm text-text-secondary hover:text-solar hover:bg-solar-bg transition-all duration-200">
                                     <i data-lucide="layout-dashboard" class="w-4 h-4"></i> Dashboard
                                 </a>
+                                <a href="{{ route('hackathons.create') }}" class="flex items-center gap-3 px-4 py-2.5 text-sm text-text-secondary hover:text-solar hover:bg-solar-bg transition-all duration-200">
+                                    <i data-lucide="plus-circle" class="w-4 h-4"></i> Host Hackathon
+                                </a>
                                 <a href="{{ route('admin.submissions') }}" class="flex items-center gap-3 px-4 py-2.5 text-sm text-text-secondary hover:text-solar hover:bg-solar-bg transition-all duration-200">
                                     <i data-lucide="folder-check" class="w-4 h-4"></i> Manage Submissions
-                                </a>
-                                <a href="#" class="flex items-center gap-3 px-4 py-2.5 text-sm text-text-secondary hover:text-solar hover:bg-solar-bg transition-all duration-200">
-                                    <i data-lucide="user-circle" class="w-4 h-4"></i> Profile
                                 </a>
                             </div>
                             <div class="border-t border-border pt-1">
@@ -97,6 +98,7 @@
                     </div>
                 </div>
                 <a href="{{ route('dashboard') }}" class="flex items-center gap-3 py-2.5 text-sm text-text-secondary hover:text-solar transition-colors"><i data-lucide="layout-dashboard" class="w-4 h-4"></i> Dashboard</a>
+                <a href="{{ route('hackathons.create') }}" class="flex items-center gap-3 py-2.5 text-sm text-text-secondary hover:text-solar transition-colors"><i data-lucide="plus-circle" class="w-4 h-4"></i> Host Hackathon</a>
                 <a href="{{ route('admin.submissions') }}" class="flex items-center gap-3 py-2.5 text-sm text-text-secondary hover:text-solar transition-colors"><i data-lucide="folder-check" class="w-4 h-4"></i> Manage Submissions</a>
                 <form method="POST" action="{{ route('logout') }}" class="mt-2">
                     @csrf

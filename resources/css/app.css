@@ -230,21 +230,32 @@ body {
 /* ── Form Inputs ─────────────────────────────── */
 .input-solar {
     width: 100%;
-    padding: 0.75rem 1rem;
-    font-size: 0.875rem;
+    padding: 1rem 1.25rem;
+    font-size: 1rem;
+    font-weight: 500;
     color: var(--color-text-primary);
     background: #FFFFFF;
-    border: 1.5px solid var(--color-border);
-    border-radius: 14px;
+    border: 2px solid #E5E7EB;
+    border-radius: 12px;
     outline: none;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 .input-solar::placeholder {
     color: #9CA3AF;
+    font-weight: 400;
+}
+.input-solar:hover {
+    border-color: #D1D5DB;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 .input-solar:focus {
     border-color: var(--color-solar);
-    box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.1);
+    box-shadow: 0 0 0 4px rgba(255, 107, 0, 0.15), 0 2px 8px rgba(0, 0, 0, 0.08);
+    transform: translateY(-1px);
+}
+.input-solar.pl-11 {
+    padding-left: 2.75rem;
 }
 
 /* ── Select ──────────────────────────────────── */

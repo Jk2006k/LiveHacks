@@ -172,7 +172,7 @@ class HackathonController extends Controller
             return back()->with('error', 'This hackathon is full.');
         }
 
-        $hackathon->participants()->attach($user->id);
+        $hackathon->participants()->attach($user->id, ['registered_at' => now()]);
 
         return back()->with('success', 'You have successfully joined the hackathon!');
     }

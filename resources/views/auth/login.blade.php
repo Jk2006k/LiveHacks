@@ -24,17 +24,11 @@
                     @csrf
                     <div>
                         <label for="email" class="block text-sm font-medium text-text-primary mb-2">Email Address</label>
-                        <div class="relative">
-                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"><i data-lucide="mail" class="w-4 h-4 text-text-secondary"></i></div>
-                            <input type="email" name="email" id="email" value="{{ old('email') }}" required autofocus class="input-solar pl-11" placeholder="you@example.com">
-                        </div>
+                        <input type="email" name="email" id="email" value="{{ old('email') }}" required autofocus class="input-solar" placeholder="you@example.com">
                     </div>
                     <div>
                         <label for="password" class="block text-sm font-medium text-text-primary mb-2">Password</label>
-                        <div class="relative">
-                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"><i data-lucide="lock" class="w-4 h-4 text-text-secondary"></i></div>
-                            <input type="password" name="password" id="password" required class="input-solar pl-11" placeholder="••••••••">
-                        </div>
+                        <input type="password" name="password" id="password" required class="input-solar" placeholder="••••••••">
                     </div>
                     <div class="flex items-center justify-between">
                         <label class="flex items-center gap-2 cursor-pointer group">

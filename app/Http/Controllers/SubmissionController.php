@@ -201,41 +201,50 @@ class SubmissionController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
-        $hackathonId = $request->input('hackathon_id');
-        $sortBy = $request->input('sort', 'latest');
-        $submissions = collect();
-        $selectedHackathon = null;
+        // Get all submissions for user's hackathons
+        $query = Submission::whereIn('hackathon_id', $hostedHackathons->pluck('id'))
+            ->with('hackathon', 'user');
 
-        if ($hackathonId) {
-            $selectedHackathon = Hackathon::where('id', $hackathonId)
-                ->where('user_id', $user->id)
-                ->first();
-
-            if ($selectedHackathon) {
-                $query = Submission::where('hackathon_id', $hackathonId)
-                    ->with('user');
-
-                switch ($sortBy) {
-                    case 'oldest':
-                        $query->orderBy('submitted_at', 'asc');
-                        break;
-                    case 'team':
-                        $query->orderBy('team_name', 'asc');
-                        break;
-                    case 'latest':
-                    default:
-                        $query->orderBy('submitted_at', 'desc');
-                        break;
-                }
-
-                $submissions = $query->paginate(15)->withQueryString();
-            }
+        // Search by team name
+        $search = $request->input('search');
+        if ($search) {
+            $query->where('team_name', 'like', "%{$search}%");
         }
 
+        // Get submissions and group by hackathon
+        $submissions = $query->orderBy('submitted_at', 'desc')->get();
+        
+        $groupedSubmissions = $submissions->groupBy(function ($submission) {
+            return $submission->hackathon->title;
+        });
+
         return view('hackathons.admin-submissions', compact(
-            'hostedHackathons', 'submissions', 'selectedHackathon',
-            'hackathonId', 'sortBy'
+            'groupedSubmissions', 'search'
         ));
+    }
+
+    /**
+     * Assign/remove winner status to a submission.
+     */
+    public function assignWinner(Submission $submission)
+    {
+        $user = Auth::user();
+
+        // Only the hackathon host can assign winners
+        if ($submission->hackathon->user_id !== $user->id) {
+            abort(403, 'Unauthorized.');
+        }
+
+        // Toggle winner status
+        $submission->update([
+            'is_winner' => !$submission->is_winner
+        ]);
+
+        $message = $submission->is_winner 
+            ? 'Team marked as winner!' 
+            : 'Winner badge removed!';
+
+        return back()->with('success', $message);
     }
 
     /**

@@ -8,14 +8,6 @@
     <div class="absolute w-[400px] h-[400px] rounded-full bg-solar-light/40 blur-3xl bottom-[-100px] right-[-150px] animate-float-gentle" style="animation-delay: 3s;"></div>
 
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        {{-- Badge --}}
-        <div class="animate-slide-down opacity-0 inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-solar-light bg-solar-bg text-sm text-solar font-medium mb-8">
-            <span class="relative flex h-2 w-2">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-solar opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-2 w-2 bg-solar"></span>
-            </span>
-            Season 3 Hackathons are Live
-        </div>
 
         {{-- Headline --}}
         <h1 class="animate-slide-up opacity-0 text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight leading-[1.05] mb-6">
@@ -59,22 +51,10 @@
                         <p class="mt-3"><span class="text-solar">$</span> <span class="text-text-primary">livehacks join --hackathon "AI-Innovation-2026"</span></p>
                         <p class="text-solar mt-1">✓ Joined hackathon! 2,847 participants competing</p>
                         <p class="mt-3"><span class="text-solar">$</span> <span class="text-text-primary">livehacks submit --project ./my-app</span></p>
-                        <p class="text-emerald-600 mt-1">🚀 Project submitted! Good luck!</p>
+                        <p class="text-emerald-600 mt-1">✓ Project submitted! Good luck!</p>
                         <span class="inline-block w-2 h-5 bg-solar animate-pulse ml-1"></span>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        {{-- Trusted By --}}
-        <div class="animate-fade-in opacity-0 delay-800 mt-16 flex flex-col items-center gap-4">
-            <p class="text-xs uppercase tracking-widest text-text-secondary font-medium">Trusted by developers from</p>
-            <div class="flex items-center gap-8 text-text-secondary/40">
-                <span class="text-lg font-bold hover:text-text-secondary transition-colors cursor-default">Google</span>
-                <span class="text-lg font-bold hover:text-text-secondary transition-colors cursor-default">Microsoft</span>
-                <span class="text-lg font-bold hover:text-text-secondary transition-colors cursor-default">Meta</span>
-                <span class="hidden sm:block text-lg font-bold hover:text-text-secondary transition-colors cursor-default">Amazon</span>
-                <span class="hidden sm:block text-lg font-bold hover:text-text-secondary transition-colors cursor-default">GitHub</span>
             </div>
         </div>
     </div>

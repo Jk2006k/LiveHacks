@@ -48,6 +48,7 @@ Route::middleware('auth')->group(function () {
 
     // ── Admin Submission Management ──────────────────────
     Route::get('/admin/submissions', [SubmissionController::class, 'adminIndex'])->name('admin.submissions');
+    Route::post('/admin/submissions/{submission}/assign-winner', [SubmissionController::class, 'assignWinner'])->name('admin.submissions.assign-winner');
     Route::get('/admin/submissions/{submission}/download', [SubmissionController::class, 'downloadZip'])->name('admin.submissions.download');
 });
 

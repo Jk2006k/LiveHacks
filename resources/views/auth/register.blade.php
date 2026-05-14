@@ -24,32 +24,20 @@
                     @csrf
                     <div>
                         <label for="name" class="block text-sm font-medium text-text-primary mb-2">Full Name</label>
-                        <div class="relative">
-                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"><i data-lucide="user" class="w-4 h-4 text-text-secondary"></i></div>
-                            <input type="text" name="name" id="name" value="{{ old('name') }}" required autofocus class="input-solar pl-11" placeholder="John Doe">
-                        </div>
+                        <input type="text" name="name" id="name" value="{{ old('name') }}" required autofocus class="input-solar" placeholder="John Doe">
                     </div>
                     <div>
                         <label for="email" class="block text-sm font-medium text-text-primary mb-2">Email Address</label>
-                        <div class="relative">
-                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"><i data-lucide="mail" class="w-4 h-4 text-text-secondary"></i></div>
-                            <input type="email" name="email" id="email" value="{{ old('email') }}" required class="input-solar pl-11" placeholder="you@example.com">
-                        </div>
+                        <input type="email" name="email" id="email" value="{{ old('email') }}" required class="input-solar" placeholder="you@example.com">
                     </div>
                     <div>
                         <label for="password" class="block text-sm font-medium text-text-primary mb-2">Password</label>
-                        <div class="relative">
-                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"><i data-lucide="lock" class="w-4 h-4 text-text-secondary"></i></div>
-                            <input type="password" name="password" id="password" required class="input-solar pl-11" placeholder="••••••••">
-                        </div>
+                        <input type="password" name="password" id="password" required class="input-solar" placeholder="••••••••">
                         <p class="mt-1.5 text-xs text-text-secondary">Minimum 8 characters</p>
                     </div>
                     <div>
                         <label for="password_confirmation" class="block text-sm font-medium text-text-primary mb-2">Confirm Password</label>
-                        <div class="relative">
-                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"><i data-lucide="shield-check" class="w-4 h-4 text-text-secondary"></i></div>
-                            <input type="password" name="password_confirmation" id="password_confirmation" required class="input-solar pl-11" placeholder="••••••••">
-                        </div>
+                        <input type="password" name="password_confirmation" id="password_confirmation" required class="input-solar" placeholder="••••••••">
                     </div>
                     <button type="submit" class="btn-solar w-full py-3 text-sm font-semibold rounded-xl justify-center">Create Account</button>
                 </form>

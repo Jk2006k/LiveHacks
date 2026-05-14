@@ -25,6 +25,7 @@ class Submission extends Model
         'demo_video_link',
         'submitted_at',
         'submission_count',
+        'is_winner',
     ];
 
     protected function casts(): array
@@ -33,6 +34,7 @@ class Submission extends Model
             'submitted_at'   => 'datetime',
             'zip_file_size'  => 'integer',
             'submission_count' => 'integer',
+            'is_winner'      => 'boolean',
         ];
     }
 
